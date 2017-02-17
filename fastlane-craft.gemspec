@@ -8,5 +8,5 @@ Gem::Specification.new do |spec|
   spec.description  = "fastlane craft"
   spec.license      = "MIT"
   spec.homepage     = "https://github.com/dt34m/fastlane-craft.git"
-  spec.files        = ["lib/**/*.rb"]
+  spec.files        = Dir["{lib}/**/*.rb"]
 end
