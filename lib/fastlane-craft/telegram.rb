@@ -1,14 +1,14 @@
+require 'telegram-notifier.rb'
+
 module Fastlane
   module Actions
     class TelegramAction < Action
       def self.run(params)
-        require 'net/https'
-        require 'uri'
-
-        uri = URI.parse("https://api.telegram.org/bot#{params[:bot_api_token]}/sendMessage")
-        params = {text: params[:message], chat_id: params[:chat_id]}
-        response = Net::HTTP.post_form(uri, params)
-        puts "telegram action response: #{response}"
+        TelegramNotifier.notify(
+          bot_api_token: params[:bot_api_token],
+          chat_id: params[:chat_id],
+          message: params[:message]
+        )
       end
 
       #####################################################

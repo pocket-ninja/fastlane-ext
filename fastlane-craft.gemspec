@@ -10,4 +10,8 @@ Gem::Specification.new do |spec|
   spec.license      = "MIT"
   spec.homepage     = "https://github.com/dt34m/fastlane-craft.git"
   spec.files        = Dir["{lib}/**/*.rb"]
+
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
 end
