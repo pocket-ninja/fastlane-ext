@@ -1,12 +1,18 @@
 #!/usr/bin/env ruby
 
 require 'fastlane-craft/telegram-notifier'
-require 'rspec'
-include RSpec::Matchers
+require 'webmock/test_unit'
+include Test::Unit::Assertions
+include WebMock::API
+WebMock.enable!
 
-bot_api_token = "335185888:AAFqnMC8Z8bG3x9rJT-k14QLBMKCBMaK4aY"
-chat_id = -184146275
-message = "Hi There!"
+bot_api_token = "test_api_token"
+chat_id = "test_chat_id"
+message = "test_message"
+
+stub_request(:post, "https://api.telegram.org/bot#{bot_api_token}/sendMessage").
+  with(:body => {"chat_id"=>chat_id, "text"=>message}).
+  to_return(:status => 200)
 
 response = TelegramNotifier.notify(
   bot_api_token: bot_api_token,
@@ -14,5 +20,4 @@ response = TelegramNotifier.notify(
   message: message
 )
 
-puts response
-expect(response).to_not be_nil
+assert(response.code=='200', 'wrong response code assertion!')
