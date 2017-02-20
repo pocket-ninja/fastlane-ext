@@ -1,10 +1,10 @@
-require 'telegram-notifier.rb'
+require_relative 'telegram_notifier'
 
 module Fastlane
   module Actions
     class TelegramAction < Action
       def self.run(params)
-        TelegramNotifier.notify(
+       TelegramNotifier.notify(
           bot_api_token: params[:bot_api_token],
           chat_id: params[:chat_id],
           message: params[:message]

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'fastlane-craft/telegram-notifier'
+require 'fastlane-craft/telegram_notifier'
 require 'webmock/test_unit'
 include Test::Unit::Assertions
 include WebMock::API
