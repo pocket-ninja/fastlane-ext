@@ -1,5 +1,7 @@
 # FastlaneCraft
 
+[![Gem Version](https://badge.fury.io/rb/fastlane-craft.svg)](https://badge.fury.io/rb/fastlane-craft)
+
 ## Usage
 
 Notify your telegram group via fastlane with telegram_action.
