@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.summary      = "fastlane craft summary"
   spec.description  = "fastlane craft"
   spec.license      = "MIT"
-  spec.homepage     = "https://github.com/dt34m/fastlane-craft.git"
+  spec.homepage     = "https://github.com/app-craft/fastlane-craft.git"
   spec.files        = Dir["{lib}/**/*.rb"]
 
   spec.add_development_dependency 'bundler'
