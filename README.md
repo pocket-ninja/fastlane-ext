@@ -23,7 +23,7 @@ lane :notify_telegram do
 end
 ```
 
- Or setup FL_TELEGRAM_BOT_API_TOKEN, FL_TELEGRAM_CHAT_ID, (optional) FL_TELEGRAM_MESSAGE_PARSE_MODE environment variables and run the following
+ Or setup FL_TELEGRAM_BOT_API_TOKEN, FL_TELEGRAM_CHAT_ID, FL_TELEGRAM_MESSAGE_PARSE_MODE(optional) environment variables and run the following
 
 ```ruby
 lane :notify_telegram do
