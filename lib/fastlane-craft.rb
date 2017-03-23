@@ -1,5 +1,5 @@
-require 'fastlane-craft/version'
-require 'fastlane-craft/telegram'
+require_relative 'fastlane_craft/telegram'
+require_relative 'fastlane_craft/telegram_notifier'
 
 module FastlaneCraft
 end

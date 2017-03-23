@@ -1,4 +1,5 @@
 require_relative 'telegram_notifier'
+include FastlaneCraft
 
 module Fastlane
   module Actions
@@ -7,7 +8,8 @@ module Fastlane
        TelegramNotifier.notify(
           bot_api_token: params[:bot_api_token],
           chat_id: params[:chat_id],
-          message: params[:message]
+          message: params[:message],
+          parse_mode: params[:parse_mode]
         )
       end
 
@@ -41,6 +43,10 @@ module Fastlane
                                        verify_block: proc do |value|
                                           UI.user_error!("No chat id for TelegramAction given, pass using `chat_id: 'chat id'`") unless (value and not value.empty?)
                                        end),
+          FastlaneCore::ConfigItem.new(key: :parse_mode,
+                                       env_name: "FL_TELEGRAM_MESSAGE_PARSE_MODE",
+                                       description: "telegram message parse mode",
+                                       optional: true)
         ]
       end
 
@@ -51,6 +57,7 @@ module Fastlane
                    bot_api_token: "bot api token here",
                    chat_id: "telegram chat id here",
                    message: "message here"
+                   parse_mode: "message parse mode here"
                    )'
         ]
       end
