@@ -15,12 +15,15 @@ lane :notify_telegram do
   telegram(
     bot_api_token: 'bot api token', # or setup FL_TELEGRAM_BOT_API_TOKEN env variable
     chat_id: 'chat id',  # or setup FL_TELEGRAM_CHAT_ID env variable
-    message: 'message' 
+    message: 'message'
+  
+    # 'Markdown' or 'HTML'. It's optional. Also U can setup FL_TELEGRAM_MESSAGE_PARSE_MODE env variable
+    parse_mode: 'message parse mode'
   ) 
 end
 ```
 
- Or setup FL_TELEGRAM_BOT_API_TOKEN, FL_TELEGRAM_CHAT_ID  environment variables and run the following
+ Or setup FL_TELEGRAM_BOT_API_TOKEN, FL_TELEGRAM_CHAT_ID, (optional) FL_TELEGRAM_MESSAGE_PARSE_MODE environment variables and run the following
 
 ```ruby
 lane :notify_telegram do
