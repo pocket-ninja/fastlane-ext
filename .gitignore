@@ -1,11 +1,13 @@
-.DS_Store
 /.bundle/
 /.yardoc
-/Gemfile.lock
 /_yardoc/
 /coverage/
 /doc/
 /pkg/
 /spec/reports/
 /tmp/
+vendor/
+.gem
+.idea/
+.DS_Store
 *.gem

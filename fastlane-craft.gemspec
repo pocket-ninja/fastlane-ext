@@ -1,7 +1,9 @@
+require File.expand_path('../lib/fastlane_craft/version', __FILE__)
+
 Gem::Specification.new do |spec|
   spec.name         = 'fastlane-craft'
-  spec.version      = '1.1.0'
-  spec.authors      = ['sroik', 'elfenlaid']
+  spec.version      = FastlaneCraft::VERSION
+  spec.authors      = %w[sroik elfenlaid]
   spec.email        = 'vasili.kazhanouski@gmail.com'
   spec.summary      = 'fastlane craft summary'
   spec.description  = 'fastlane craft'
@@ -9,7 +11,10 @@ Gem::Specification.new do |spec|
   spec.homepage     = 'https://github.com/app-craft/fastlane-craft.git'
   spec.files        = Dir['{lib}/**/*.rb']
 
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'bundler', '> 0'
+  spec.add_development_dependency 'gem-release', '> 0'
+  spec.add_development_dependency 'rake', '> 0'
+  spec.add_development_dependency 'rubocop', '> 0.52'
+  spec.add_development_dependency 'test-unit', '> 0'
+  spec.add_development_dependency 'webmock', '> 0'
 end

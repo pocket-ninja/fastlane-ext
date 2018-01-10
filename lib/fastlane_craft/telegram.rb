@@ -1,11 +1,12 @@
 require_relative 'telegram_notifier'
-include FastlaneCraft
 
 module Fastlane
   module Actions
     class TelegramAction < Action
+      include FastlaneCraft
+
       def self.run(params)
-       TelegramNotifier.notify(
+        TelegramNotifier.notify(
           bot_api_token: params[:bot_api_token],
           chat_id: params[:chat_id],
           message: params[:message],
@@ -18,34 +19,34 @@ module Fastlane
       #####################################################
 
       def self.description
-        "Send a success/error message to your Telegram group"
+        'Send a success/error message to your Telegram group'
       end
 
       def self.details
-        "Send a success/error message to your Telegram group"
+        'Send a success/error message to your Telegram group'
       end
 
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(key: :bot_api_token,
-                                       env_name: "FL_TELEGRAM_BOT_API_TOKEN",
-                                       description: "API Token for telegram bot",
+                                       env_name: 'FL_TELEGRAM_BOT_API_TOKEN',
+                                       description: 'API Token for telegram bot',
                                        verify_block: proc do |value|
-                                          UI.user_error!("No bot API token for TelegramAction given, pass using `bot_api_token: 'token'`") unless (value and not value.empty?)
+                                         UI.user_error!("No bot API token for TelegramAction given, pass using `bot_api_token: 'token'`") unless value && !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :message,
-                                       env_name: "FL_TELEGRAM_MESSAGE",
-                                       description: "The message that should be displayed on Telegram",
+                                       env_name: 'FL_TELEGRAM_MESSAGE',
+                                       description: 'The message that should be displayed on Telegram',
                                        optional: true),
           FastlaneCore::ConfigItem.new(key: :chat_id,
-                                       env_name: "FL_TELEGRAM_CHAT_ID",
-                                       description: "telegram chat id",
+                                       env_name: 'FL_TELEGRAM_CHAT_ID',
+                                       description: 'telegram chat id',
                                        verify_block: proc do |value|
-                                          UI.user_error!("No chat id for TelegramAction given, pass using `chat_id: 'chat id'`") unless (value and not value.empty?)
+                                         UI.user_error!("No chat id for TelegramAction given, pass using `chat_id: 'chat id'`") unless value && !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :parse_mode,
-                                       env_name: "FL_TELEGRAM_MESSAGE_PARSE_MODE",
-                                       description: "telegram message parse mode",
+                                       env_name: 'FL_TELEGRAM_MESSAGE_PARSE_MODE',
+                                       description: 'telegram message parse mode',
                                        optional: true)
         ]
       end
@@ -63,17 +64,16 @@ module Fastlane
       end
 
       def self.authors
-        ["sroik", "elfenlaid"]
+        %w[sroik elfenlaid]
       end
 
-      def self.is_supported?(platform)
+      def self.is_supported?(_)
         true
       end
 
       def self.category
         :notifications
       end
-
     end
   end
 end
