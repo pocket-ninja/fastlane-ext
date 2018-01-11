@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fastlane-craft (1.2.1)
+    fastlane-craft (1.2.4)
 
 GEM
   remote: https://rubygems.org/

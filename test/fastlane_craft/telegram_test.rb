@@ -17,12 +17,8 @@ class TelegramTests < Test::Unit::TestCase
       .with(body: { 'chat_id' => chat_id, 'text' => message, 'parse_mode' => parse_mode })
       .to_return(status: 200)
 
-    response = TelegramNotifier.notify(
-      bot_api_token: bot_api_token,
-      chat_id: chat_id,
-      message: message,
-      parse_mode: parse_mode
-    )
+    notifier = TelegramNotifier.new(bot_api_token: bot_api_token, chat_id: chat_id)
+    response = notifier.notify(message: message, parse_mode: parse_mode)
 
     assert(response.code == '200', 'wrong response code assertion!')
   end

@@ -6,12 +6,8 @@ module Fastlane
       include FastlaneCraft
 
       def self.run(params)
-        TelegramNotifier.notify(
-          bot_api_token: params[:bot_api_token],
-          chat_id: params[:chat_id],
-          message: params[:message],
-          parse_mode: params[:parse_mode]
-        )
+        notifier = TelegramNotifier.new(bot_api_token: params[:bot_api_token], chat_id: params[:chat_id])
+        notifier.notify(message: params[:message], parse_mode: params[:parse_mode])
       end
 
       #####################################################
