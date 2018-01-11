@@ -14,6 +14,10 @@ module Fastlane
         )
       end
 
+      #####################################################
+      # @!group Documentation
+      #####################################################
+
       def self.description
         'Send a success/error message to your Telegram group'
       end

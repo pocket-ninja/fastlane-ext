@@ -9,6 +9,10 @@ module Fastlane
         puts params
       end
 
+      #####################################################
+      # @!group Documentation
+      #####################################################
+
       def self.description
         'Release app according to the latest tag'
       end
