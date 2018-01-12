@@ -1,4 +1,4 @@
-# fastlane-craft &nbsp; [![Build Status](https://www.bitrise.io/app/0845b4d0a78dc7db/status.svg?token=xTOEh6hV9SMcfVlY2-MjxQ&branch=master)](https://www.bitrise.io/app/0845b4d0a78dz[Gem Version](https://badge.fury.io/rb/fastlane-craft.svg)](https://badge.fury.io/rb/fastlane-craft)
+# fastlane-craft &nbsp; [![Build Status](https://www.bitrise.io/app/0845b4d0a78dc7db/status.svg?token=xTOEh6hV9SMcfVlY2-MjxQ&branch=master)](https://www.bitrise.io/app/0845b4d0a78dc7db)  [![Gem Version](https://badge.fury.io/rb/fastlane-craft.svg)](https://badge.fury.io/rb/fastlane-craft)
 
 ## Contents
 - [Installation](#installation)
@@ -46,6 +46,7 @@ end
 ## Tag Release
 
 Release the application according to the last git tag.
+
 First of all setup certificates using [fastlane match](https://docs.fastlane.tools/actions/match/).
 
 To release your app run:
