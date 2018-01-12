@@ -5,8 +5,8 @@ module FastlaneCraft
     include Gem
 
     def initialize(info_plist, extra_info_plists = [])
-      raise 'Invalid Info Plist Path' if info_plist.empty?
-      raise TypeError unless info_plist.is_a? String
+      raise 'Invalid Info Plist Path' unless File.file?(info_plist)
+      raise 'Invalid Extra Info Plists Paths' unless extra_info_plists.none? { |p| !File.file?(p) }
       @info_plist = info_plist
       @extra_info_plists = extra_info_plists
     end
