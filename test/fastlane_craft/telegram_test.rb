@@ -1,3 +1,4 @@
+require_relative '../test_helper'
 require_relative '../../lib/fastlane_craft/telegram_notifier'
 require 'webmock/test_unit'
 

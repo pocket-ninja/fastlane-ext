@@ -1,9 +1,10 @@
+require_relative 'info_plist_controller'
+
 module FastlaneCraft
   class TagReleaseManager
-    def initialize(info_plist_path, target_suffix = nil)
-      raise 'Invalid Info Plist Path' if info_plist_path.empty?
-      @info_plist_path = info_plist_path
+    def initialize(info_plist, extra_info_plists, target_suffix = nil)
       @target_suffix = target_suffix
+      @plist_controller = InfoPlistController.new(info_plist, extra_info_plists)
     end
 
     def release
@@ -52,52 +53,8 @@ end
 #   broadcast_release
 # end
 #
-# def bumped_version(v)
-#   value = v.to_s
-#   value[-1] = (value[-1].to_i + 1).to_s
-#   Gem::Version.new(value)
-# end
-#
 # def tag_version
 #   version_format = /[0-9.]+/
 #   tag = last_git_tag.match(version_format)[0]
 #   Gem::Version.new(tag)
-# end
-#
-# def set_app_version(v)
-#   value = set_info_plist_value(
-#     path: info_plist_path,
-#     key: info_plist_version_key,
-#     value: v.to_s
-#   )
-# end
-#
-# def set_app_build_version(v)
-#   value = set_info_plist_value(
-#     path: info_plist_path,
-#     key: info_plist_build_version_key,
-#     value: v.to_s
-#   )
-# end
-#
-# def app_version
-#   value = get_info_plist_value(path: info_plist_path, key: info_plist_version_key)
-#   Gem::Version.new(value)
-# end
-#
-# def app_build_version
-#   value = get_info_plist_value(path: info_plist_path, key: info_plist_build_version_key)
-#   Gem::Version.new(value)
-# end
-#
-# def info_plist_version_key
-#   'CFBundleShortVersionString'
-# end
-#
-# def info_plist_build_version_key
-#   'CFBundleVersion'
-# end
-#
-# def info_plist_path
-#   File.join(Dir.pwd, '../PixelArt/Supporting Files/Info.plist')
 # end

@@ -2,7 +2,7 @@ require_relative 'tag_release_manager'
 
 module Fastlane
   module Actions
-    class TelegramAction < Action
+    class TagReleaseAction < Action
       include FastlaneCraft
 
       def self.run(params)
