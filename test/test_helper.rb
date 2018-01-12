@@ -1,3 +1,4 @@
+require 'fastlane'
 require 'test/unit'
 require_relative '../lib/fastlane_craft'
 

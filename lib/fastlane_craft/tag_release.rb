@@ -3,10 +3,8 @@ require_relative 'tag_release_manager'
 module Fastlane
   module Actions
     class TagReleaseAction < Action
-      include FastlaneCraft
-
       def self.run(params)
-        TagReleaseManager.new(
+        FastlaneCraft::TagReleaseManager.new(
           params[:scheme],
           params[:info_plist],
           params[:extra_info_plists],
