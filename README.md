@@ -1,4 +1,4 @@
-# fastlane-craft &nbsp; [![Build Status](https://www.bitrise.io/app/0845b4d0a78dc7db/status.svg?token=xTOEh6hV9SMcfVlY2-MjxQ&branch=master)](https://www.bitrise.io/app/0845b4d0a78dc7db)  [![Gem Version](https://badge.fury.io/rb/fastlane-craft.svg)](https://badge.fury.io/rb/fastlane-craft)
+# fastlane-craft &nbsp; [![Build Status](https://www.bitrise.io/app/0845b4d0a78dc7db/status.svg?token=xTOEh6hV9SMcfVlY2-MjxQ&branch=master)](https://www.bitrise.io/app/0845b4d0a78dz[Gem Version](https://badge.fury.io/rb/fastlane-craft.svg)](https://badge.fury.io/rb/fastlane-craft)
 
 ## Contents
 - [Installation](#installation)
@@ -30,7 +30,7 @@ Just call `telegram` action in your lane:
 
 ```ruby
 lane :notify_telegram do
-  fastlane_require 'fastlane-craft'
+  fastlane_require 'fastlane_craft'
 
   telegram(
     bot_api_token: 'bot api token', # or setup FL_TELEGRAM_BOT_API_TOKEN env variable
@@ -44,6 +44,26 @@ end
 ```
 
 ## Tag Release
+
+Release the application according to the last git tag.
+First of all setup certificates using [fastlane match](https://docs.fastlane.tools/actions/match/).
+
+To release your app run:
+
+```ruby
+lane :notify_telegram do
+  fastlane_require 'fastlane_craft'
+
+  tag_release(
+    scheme: 'app scheme',
+    info_plist: 'path/to/plist',
+    extra_info_plists: ['/path/to/plist'], # optional, default is [] 
+    branch: 'remote_branch', # optional, default is master
+    tag: 'tag', # optional, default is the last git tag
+    target_suffix: '_sfx' # optional
+  )
+end
+```
 
 ## License
 
