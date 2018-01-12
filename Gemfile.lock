@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fastlane-craft (1.2.5)
+    fastlane-craft (1.2.7)
       fastlane (> 0)
 
 GEM
@@ -171,7 +171,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (> 0)
-  fastlane
   fastlane-craft!
   gem-release (> 0)
   rake (> 0)
