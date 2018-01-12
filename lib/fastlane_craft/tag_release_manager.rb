@@ -1,6 +1,5 @@
 require_relative 'info_plist_controller'
-require 'fastlane_core'
-require 'fastlane'
+require 'fastlane_core/ui/ui'
 
 module FastlaneCraft
   class TagReleaseManager

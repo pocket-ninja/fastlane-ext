@@ -1,5 +1,4 @@
 require_relative 'tag_release_manager'
-require 'fastlane'
 
 module Fastlane
   module Actions
