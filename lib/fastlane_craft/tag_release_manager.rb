@@ -1,60 +1,74 @@
 require_relative 'info_plist_controller'
+require 'fastlane_core'
+require 'fastlane'
 
 module FastlaneCraft
   class TagReleaseManager
-    def initialize(info_plist, extra_info_plists, target_suffix = nil)
+    include FastlaneCore
+    include Gem
+
+    def initialize(scheme, info_plist, extra_info_plists, branch, tag, target_suffix = nil)
+      raise 'Invalid Branch' if branch.empty?
+      raise 'Invalid Scheme' if scheme.empty?
+      raise 'Invalid Tag' if tag.nil? || tag.empty?
+
+      @scheme = scheme
+      @branch = branch
+      @tag = tag
       @target_suffix = target_suffix
       @plist_controller = InfoPlistController.new(info_plist, extra_info_plists)
     end
 
     def release
-      puts 'releasing :)'
+      bump_version
+      archive
+      upload_to_tf
+      @plist_controller.bump_build_version_patch
+      push_version_bump
+    end
+
+    def bump_version
+      msg = 'The version of the tag is less than the actual app version'
+      UI.user_error! msg if tag_version < @plist_controller.version
+      UI.user_error! "Tag '#{@tag}' has no suffix: '#{@target_suffix}'" unless tag_valid?
+      return unless tag_version > @plist_controller.version
+
+      @plist_controller.set_version(tag_version)
+      @plist_controller.set_build_version(Version.new(tag_version.to_s + '.0'))
+      UI.success "Version was successfully bumped to #{version_dump}"
+    end
+
+    def upload_to_tf
+      cmd = 'fastlane upload_to_testflight --skip_submission true'
+      raise "TF uploading Failed! Command execution error: '#{cmd}'" unless system(cmd)
+    end
+
+    def push_version_bump
+      cmd = "fastlane commit_version_bump -message #{version_dump} --force true"
+      raise "Git Commit Failed! Command execution error: '#{cmd}'" unless system(cmd)
+
+      cmd = "git push origin HEAD:#{@branch}"
+      raise "Git Push Failed! Command execution error: '#{cmd}'" unless system(cmd)
+    end
+
+    def tag_version
+      version_format = /[0-9.]+/
+      tag = @tag.match(version_format)[0]
+      Version.new(tag)
+    end
+
+    def tag_valid?
+      return true if @target_suffix.nil? || @target_suffix.empty?
+      @tag.end_with? @target_suffix
+    end
+
+    def archive
+      cmd = "fastlane gym --scheme #{@scheme} --export_method app-store"
+      raise "Archiving failed! Command execution error: '#{cmd}'" unless system(cmd)
+    end
+
+    def version_dump
+      "#{@plist_controller.version}/#{@plist_controller.build_version}"
     end
   end
 end
-
-# lane :bump_version do |options|
-#   if tag_version < app_version
-#     UI.user_error! 'The version of the tag is less than the actual app version'
-#   end
-#
-#   if tag_version > app_version
-#     version = tag_version.to_s
-#     build_version = Gem::Version.new(version.to_s + '.0')
-#   elsif tag_version == app_version && options[:bump_patch]
-#     version = app_version.to_s
-#     build_version = bumped_version(app_build_version)
-#   end
-#
-#   set_app_version(version)
-#   set_app_build_version(build_version)
-#   UI.success "Version was successfully bumped to #{version}/#{build_version}"
-# end
-#
-# lane :push_version_bump do
-#   commit_version_bump(
-#     message: "Bump version to #{app_version}/#{app_build_version}",
-#     force: true
-#   )
-#
-#   push_to_git_remote(
-#     local_branch: 'master',
-#     remote_branch: 'master'
-#   )
-# end
-#
-# lane :release do
-#   bump_version
-#   certificates
-#   archive_appstore
-#   upload_to_testflight(skip_submission: true)
-#   bump_version(bump_patch: true)
-#   push_version_bump
-#   broadcast_release
-# end
-#
-# def tag_version
-#   version_format = /[0-9.]+/
-#   tag = last_git_tag.match(version_format)[0]
-#   Gem::Version.new(tag)
-# end
