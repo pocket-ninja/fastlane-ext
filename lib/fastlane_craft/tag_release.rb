@@ -1,4 +1,4 @@
-require_relative 'telegram_notifier'
+require_relative 'tag_release_manager'
 
 module Fastlane
   module Actions
@@ -6,7 +6,10 @@ module Fastlane
       include FastlaneCraft
 
       def self.run(params)
-        puts params
+        TagReleaseManager.new(
+          params[:info_plist_path],
+          params[:target_suffix]
+        ).release
       end
 
       #####################################################
@@ -27,6 +30,14 @@ module Fastlane
             key: :target_suffix,
             description: 'Specific target suffix',
             optional: true
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :info_plist_path,
+            description: 'target info plist path',
+            verify_block: proc do |value|
+              msg = 'empty info plist path'
+              UI.user_error!(msg) unless value && !value.empty?
+            end
           )
         ]
       end
