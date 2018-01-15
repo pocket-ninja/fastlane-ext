@@ -38,7 +38,7 @@ module FastlaneCraft
     end
 
     def upload_to_tf
-      cmd = 'fastlane upload_to_testflight --skip_submission true'
+      cmd = 'fastlane pilot upload --skip_submission'
       raise "TF uploading Failed! Command execution error: '#{cmd}'" unless system(cmd)
     end
 
