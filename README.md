@@ -49,6 +49,8 @@ Release the application according to the last git tag.
 
 First of all setup certificates using [fastlane match](https://docs.fastlane.tools/actions/match/).
 
+Then setup credentials using `FASTLANE_USER` and `FASTLANE_PASSWORD` env variables.
+
 To release your app run:
 
 ```ruby
@@ -58,13 +60,16 @@ lane :notify_telegram do
   tag_release(
     scheme: 'app scheme',
     info_plist: 'path/to/plist',
-    extra_info_plists: ['/path/to/plist'], # optional, default is [] 
+    extra_info_plists: ['/path/to/plist'], # optional, default is []
     branch: 'remote_branch', # optional, default is master
     tag: 'tag', # optional, default is the last git tag
     target_suffix: '_sfx' # optional
   )
 end
 ```
+
+This action will set `TG_RELEASE_VERSION` (like '1.2.3'), `TG_RELEASE_BUILD_NUMBER` (like 1.2.3.0) and `TG_RELEASE_VERSION_TAG` (like 1.2.3/1.2.3.0) env variables. 
+
 
 ## License
 

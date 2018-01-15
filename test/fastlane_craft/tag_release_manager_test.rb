@@ -18,6 +18,17 @@ class InfoPlistControllerTest < Test::Unit::TestCase
     assert_false(manager.tag_valid?)
   end
 
+  def test_env_variables
+    with_info_plist_file do |file|
+      manager = TagReleaseManager.new('s', file.path, [], 'master', '1.3.0')
+      manager.bump_version
+      manager.update_env
+      assert_equal(ENV[SharedValues::TG_RELEASE_VERSION], '1.3.0')
+      assert_equal(ENV[SharedValues::TG_RELEASE_BUILD_NUMBER], '1.3.0.0')
+      assert_equal(ENV[SharedValues::TG_RELEASE_VERSION_TAG], '1.3.0/1.3.0.0')
+    end
+  end
+
   def test_version_bump
     with_info_plist_file do |file|
       manager = TagReleaseManager.new('s', file.path, [], 'master', '1.3.0')

@@ -2,6 +2,12 @@ require_relative 'info_plist_controller'
 require 'fastlane_core/ui/ui'
 
 module FastlaneCraft
+  module SharedValues
+    TG_RELEASE_VERSION = 'TG_RELEASE_VERSION'.freeze
+    TG_RELEASE_BUILD_NUMBER = 'TG_RELEASE_BUILD_NUMBER'.freeze
+    TG_RELEASE_VERSION_TAG = 'TG_RELEASE_VERSION_TAG'.freeze
+  end
+
   class TagReleaseManager
     include FastlaneCore
     include Gem
@@ -22,6 +28,7 @@ module FastlaneCraft
       bump_version
       archive
       upload_to_tf
+      update_env
       @plist_controller.bump_build_version_patch
       push_version_bump
     end
@@ -40,6 +47,12 @@ module FastlaneCraft
     def upload_to_tf
       cmd = 'fastlane pilot upload --skip_submission'
       raise "TF uploading Failed! Command execution error: '#{cmd}'" unless system(cmd)
+    end
+
+    def update_env
+      ENV[SharedValues::TG_RELEASE_VERSION] = @plist_controller.version.to_s
+      ENV[SharedValues::TG_RELEASE_BUILD_NUMBER] = @plist_controller.build_version.to_s
+      ENV[SharedValues::TG_RELEASE_VERSION_TAG] = version_dump
     end
 
     def push_version_bump
