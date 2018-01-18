@@ -1,5 +1,5 @@
 require_relative '../test_helper'
-require_relative '../../lib/fastlane_craft/info_plist_controller'
+require_relative '../../lib/fastlane-craft/info_plist_controller'
 require 'tempfile'
 
 class InfoPlistControllerTest < Test::Unit::TestCase

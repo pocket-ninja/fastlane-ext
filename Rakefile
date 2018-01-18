@@ -1,13 +1,13 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rubocop/rake_task'
-require_relative 'lib/fastlane_craft/version'
+require_relative 'lib/fastlane-craft/version'
 
 task default: 'test'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
-  t.test_files = FileList['test/fastlane_craft/*_test.rb']
+  t.test_files = FileList['test/fastlane-craft/*_test.rb']
 end
 
 RuboCop::RakeTask.new(:lint) do |t|

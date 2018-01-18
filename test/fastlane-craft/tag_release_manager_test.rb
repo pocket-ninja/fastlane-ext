@@ -1,5 +1,5 @@
 require_relative '../test_helper'
-require_relative '../../lib/fastlane_craft/tag_release_manager'
+require_relative '../../lib/fastlane-craft/tag_release_manager'
 require 'tempfile'
 
 class InfoPlistControllerTest < Test::Unit::TestCase
