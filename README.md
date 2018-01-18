@@ -30,7 +30,7 @@ Just call `telegram` action in your lane:
 
 ```ruby
 lane :notify_telegram do
-  fastlane_require 'fastlane_craft'
+  fastlane_require 'fastlane-craft'
 
   telegram(
     bot_api_token: 'bot api token', # or setup FL_TELEGRAM_BOT_API_TOKEN env variable
@@ -55,7 +55,7 @@ To release your app run:
 
 ```ruby
 lane :notify_telegram do
-  fastlane_require 'fastlane_craft'
+  fastlane_require 'fastlane-craft'
 
   tag_release(
     scheme: 'app scheme',
