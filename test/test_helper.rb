@@ -1,6 +1,6 @@
 require 'fastlane'
 require 'test/unit'
-require_relative '../lib/fastlane_craft'
+require_relative '../lib/fastlane-craft'
 
 class Test::Unit::TestCase
   include FastlaneCraft

@@ -24,3 +24,6 @@ Naming/PredicateName:
 
 Naming/AccessorMethodName:
   Enabled: false
+
+Naming/FileName:
+  Enabled: false
