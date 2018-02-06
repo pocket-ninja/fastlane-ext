@@ -1,3 +1,3 @@
 module FastlaneCraft
-  VERSION = '1.2.18'.freeze
+  VERSION = '1.2.19'.freeze
 end
