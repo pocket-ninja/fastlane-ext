@@ -54,7 +54,7 @@ Then setup credentials using `FASTLANE_USER` and `FASTLANE_PASSWORD` env variabl
 To release your app run:
 
 ```ruby
-lane :notify_telegram do
+lane :release do
   fastlane_require 'fastlane-craft'
 
   tag_release(
