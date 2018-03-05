@@ -1,15 +1,15 @@
-require_relative 'tag_release_manager'
+require_relative 'app_release_manager'
 
 module Fastlane
   module Actions
-    class TagReleaseAction < Action
+    class AppReleaseAction < Action
       def self.run(params)
-        FastlaneCraft::TagReleaseManager.new(
+        FastlaneCraft::AppReleaseManager.new(
           params[:scheme],
           params[:info_plist],
           params[:extra_info_plists],
           params[:branch],
-          params[:tag] || Actions.last_git_tag_name,
+          params[:version],
           params[:target_suffix]
         ).release
       end
@@ -19,11 +19,11 @@ module Fastlane
       #####################################################
 
       def self.description
-        'Release app according to the latest tag'
+        'Release app according to the version'
       end
 
       def self.details
-        'Release app according to the latest tag'
+        'Release app according to the version'
       end
 
       def self.available_options
@@ -62,8 +62,8 @@ module Fastlane
             end
           ),
           FastlaneCore::ConfigItem.new(
-            key: :tag,
-            description: 'git tag',
+            key: :version,
+            description: 'app version (like 1.1.0)',
             optional: true
           ),
           FastlaneCore::ConfigItem.new(
@@ -76,16 +76,16 @@ module Fastlane
 
       def self.example_code
         [
-          'tag_release(
+          'app_release(
             scheme: "AppScheme",
             info_plist: "/path/to/info/plist"
           )',
-          'tag_release(
+          'app_release(
             scheme: "Application",
             info_plist: "/path/to/info/plist",
             extra_info_plists: ["plist1", "plist2"],
             branch: "master",
-            tag: "2.3.0",
+            version: "2.3.0",
             target_suffix: "_sfx"
           )'
         ]
