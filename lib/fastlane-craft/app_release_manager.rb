@@ -21,7 +21,7 @@ module FastlaneCraft
       @branch = branch
       @target_suffix = target_suffix
       @plist_controller = InfoPlistController.new(info_plist, extra_info_plists)
-      @version = Version.new(version) || @plist_controller.version
+      @version = version.nil? ? @plist_controller.version : Version.new(version)
     end
 
     def release

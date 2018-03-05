@@ -14,10 +14,12 @@ class AppReleaseManagerTest < Test::Unit::TestCase
   end
 
   def test_get_tag
-    manager = release_manager('1.2.3')
+    manager = release_manager('1.3.0')
+    assert_equal(manager.git_tag, '1.3.0')
+    manager = release_manager('1.3.3', 'tst')
+    assert_equal(manager.git_tag, '1.3.3_tst')
+    manager = release_manager
     assert_equal(manager.git_tag, '1.2.3')
-    manager = release_manager('1.2.3', 'tst')
-    assert_equal(manager.git_tag, '1.2.3_tst')
   end
 
   def test_env_variables
@@ -43,7 +45,7 @@ class AppReleaseManagerTest < Test::Unit::TestCase
 
   private
 
-  def release_manager(version, suffix = nil)
+  def release_manager(version = nil, suffix = nil)
     AppReleaseManager.new(
       'scheme',
       info_plist_path,
