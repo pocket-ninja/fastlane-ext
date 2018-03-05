@@ -91,12 +91,13 @@ module FastlaneCraft
     end
 
     def last_git_tag_version
+      return nil unless last_git_tag.nil?
       tag = last_git_tag.match(/[0-9.]+/)[0]
       version_valid?(tag) ? Version.new(tag) : nil
     end
 
     def last_git_tag
-      Actions.last_git_tag_name
+      `git tag`&.split("\n")&.first
     end
 
     def version_valid?(v)
