@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fastlane-craft (1.3.2)
+    fastlane-craft (1.3.3)
       fastlane (> 0)
 
 GEM

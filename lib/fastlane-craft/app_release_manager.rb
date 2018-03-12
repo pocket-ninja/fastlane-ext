@@ -61,7 +61,7 @@ module FastlaneCraft
       cmd = "git add . && git commit -m 'Bump version to #{version_dump}'"
       raise "Git Commit Failed! Command execution error: '#{cmd}'" unless system(cmd)
 
-      cmd = "git push origin HEAD:#{@branch}"
+      cmd = "git pull origin HEAD:#{@branch} && git push origin HEAD:#{@branch}"
       raise "Git Push Failed! Command execution error: '#{cmd}'" unless system(cmd)
     end
 
