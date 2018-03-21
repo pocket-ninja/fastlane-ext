@@ -56,19 +56,18 @@ To release your app run:
 ```ruby
 lane :release do
   fastlane_require 'fastlane-craft'
-
-  tag_release(
+  app_release(
     scheme: 'app scheme',
     info_plist: 'path/to/plist',
     extra_info_plists: ['/path/to/plist'], # optional, default is []
     branch: 'remote_branch', # optional, default is master
-    tag: 'tag', # optional, default is the last git tag
+    version: 'version', # or ENV['VERSION'] 
     target_suffix: '_sfx' # optional
   )
 end
 ```
 
-This action will set `TG_RELEASE_VERSION` (like '1.2.3'), `TG_RELEASE_BUILD_NUMBER` (like 1.2.3.0) and `TG_RELEASE_VERSION_TAG` (like 1.2.3/1.2.3.0) env variables. 
+This action will set `APP_RELEASE_VERSION` (like '1.2.3'), `APP_RELEASE_BUILD_NUMBER` (like 1.2.3.0) and `APP_RELEASE_VERSION_TAG` (like 1.2.3/1.2.3.0) env variables. 
 
 
 ## License
