@@ -16,6 +16,9 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
 Security/Eval:
   Enabled: false
 

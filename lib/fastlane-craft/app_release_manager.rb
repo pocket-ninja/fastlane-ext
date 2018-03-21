@@ -32,7 +32,7 @@ module FastlaneCraft
       @plist_controller.bump_build_version_patch
       push_version_bump
 
-      remove_last_git_tag_if_needed
+      remove_existing_git_tag
       push_git_tag
     end
 
@@ -74,37 +74,38 @@ module FastlaneCraft
     end
 
     def push_git_tag
-      cmd = "git tag #{git_tag} && git push --tags"
+      UI.message "going to push tag: #{curr_git_tag}"
+      cmd = "git tag #{curr_git_tag} && git push --tags"
       raise "Tag push failed! Command execution error: '#{cmd}'" unless system(cmd)
     end
 
-    def remove_last_git_tag
-      tag = last_git_tag
+    def remove_existing_git_tag
+      tag = existing_git_tag
+      return if tag.nil?
+
+      UI.message "going to remove tag: #{tag}"
       cmd = "git tag -d #{tag} && git push origin :refs/tags/#{tag}"
       raise "Git tag deletion failed! Command execution error: '#{cmd}'" unless system(cmd)
     end
 
-    def remove_last_git_tag_if_needed
-      remove_last_git_tag if last_git_tag_version == @version
-    end
-
-    def git_tag
+    def curr_git_tag
       return @version.to_s unless @target_suffix
       "#{@version}_#{@target_suffix}"
     end
 
-    def last_git_tag_version
-      return nil unless last_git_tag.nil?
-      tag = last_git_tag.match(/[0-9.]+/)[0]
-      version_valid?(tag) ? Version.new(tag) : nil
+    def existing_git_tag
+      git_tags.detect do |t|
+        tag_v = t.match(/[0-9.]+/)[0]
+        version_valid?(tag_v) && Version.new(tag_v) == @version
+      end
     end
 
-    def last_git_tag
-      `git tag`&.split("\n")&.first
+    def git_tags
+      `git tag`.split("\n")
     end
 
-    def version_valid?(v)
-      v.to_s.match?(/^\d\.\d\.\d{1,3}$/)
+    def version_valid?(version)
+      version.to_s.match?(/^\d\.\d\.\d{1,3}$/)
     end
 
     def version_dump

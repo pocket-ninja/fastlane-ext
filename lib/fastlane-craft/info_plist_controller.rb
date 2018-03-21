@@ -17,15 +17,15 @@ module FastlaneCraft
       set_build_version(Version.new(value))
     end
 
-    def set_version(v)
+    def set_version(version)
       info_plists.each do |path|
-        set_plist_value_for(path, v.to_s, version_key)
+        set_plist_value_for(path, version.to_s, version_key)
       end
     end
 
-    def set_build_version(v)
+    def set_build_version(version)
       info_plists.each do |path|
-        set_plist_value_for(path, v.to_s, build_version_key)
+        set_plist_value_for(path, version.to_s, build_version_key)
       end
     end
 

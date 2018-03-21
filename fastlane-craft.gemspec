@@ -1,4 +1,4 @@
-require File.expand_path('../lib/fastlane-craft/version', __FILE__)
+require File.expand_path('lib/fastlane-craft/version', __dir__)
 
 Gem::Specification.new do |spec|
   spec.name         = 'fastlane-craft'

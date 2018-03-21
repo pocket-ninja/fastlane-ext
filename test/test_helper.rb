@@ -21,6 +21,6 @@ class Test::Unit::TestCase
   end
 
   def info_plist_path
-    File.expand_path('../resources/mock_info.plist', __FILE__)
+    File.expand_path('resources/mock_info.plist', __dir__)
   end
 end
