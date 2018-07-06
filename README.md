@@ -3,7 +3,7 @@
 ## Contents
 - [Installation](#installation)
 - [Telegram](#telegram)
-- [App Release](#tag-release)
+- [App Release](#app-release)
 - [License](#license)
 
 ## Installation
