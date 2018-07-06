@@ -69,8 +69,7 @@ module FastlaneCraft
     end
 
     def archive
-      cmd = "fastlane gym --configuration Release --scheme #{@scheme} --export_method app-store"
-      raise "Archiving failed! Command execution error: '#{cmd}'" unless system(cmd)
+      other_action.gym(configuration: 'Release', scheme: scheme, export_method: 'app-store')
     end
 
     def push_git_tag
