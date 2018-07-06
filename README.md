@@ -3,7 +3,7 @@
 ## Contents
 - [Installation](#installation)
 - [Telegram](#telegram)
-- [Tag Release](#tag-release)
+- [App Release](#tag-release)
 - [License](#license)
 
 ## Installation
@@ -43,9 +43,9 @@ lane :notify_telegram do
 end
 ```
 
-## Tag Release
+## App Release
 
-Release the application according to the last git tag.
+Release the application.
 
 First of all setup certificates using [fastlane match](https://docs.fastlane.tools/actions/match/).
 
