@@ -76,7 +76,7 @@ module Fastlane
                                        env_name: "FL_UPLOAD_DSYM_PATH",
                                        description: "Archived dSYM files",
                                        is_string: true,
-                                       default_value: ENV['DSYM_OUTPUT_PATH'],
+                                       default_value: ENV['DSYM_OUTPUT_PATH'] || Dir['*.dSYM.zip'].first,
                                        verify_block: proc do |value|
                                         UI.user_error!("Couldn't find dSYM file at path '#{value}'") unless File.exist?(value)
                                        end),
