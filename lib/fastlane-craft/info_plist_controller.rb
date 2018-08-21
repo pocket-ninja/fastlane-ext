@@ -51,10 +51,6 @@ module FastlaneCraft
       Plist.parse_xml(plist_path)[key]
     end
 
-    def extra_plists
-      extra_plists.map { |p| Plist.parse_xml(p) }
-    end
-
     def info_plists
       [@info_plist] + @extra_info_plists
     end
