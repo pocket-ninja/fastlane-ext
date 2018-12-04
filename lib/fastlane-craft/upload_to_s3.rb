@@ -24,6 +24,7 @@ module Fastlane
           )
 
           UI.message "Check whether destination bucket #{bucket} exists..💤"
+
           begin
             response = client.create_bucket({
               bucket: bucket,
@@ -35,6 +36,7 @@ module Fastlane
           end
 
           UI.message "Going to upload file to s3..💤"
+
           File.open(local_path, 'r') do |body|
             response = client.put_object(
               acl: acl,
@@ -43,10 +45,16 @@ module Fastlane
               body: body
             )
 
-            s3_url = params[:endpoint] + "/" + bucket + "/" + file_path
-            ENV[SharedValues::UPLOADED_S3_URL] = s3_url
+            object = Aws::S3::Object.new(
+              key: file_path,
+              bucket_name: bucket,
+              client: client
+            )
 
-            UI.message "✨ file uploaded to #{s3_url} ✨"
+            url = object.public_url
+
+            UI.message "✨ file uploaded to #{url} ✨"
+            ENV[SharedValues::UPLOADED_S3_URL] = url
           end
         end
 
