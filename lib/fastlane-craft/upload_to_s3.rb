@@ -137,8 +137,8 @@ module Fastlane
       end
 
       def self.is_supported?(platform)
-        platform == :android || platform == :ios
+        %i[ios android].include?(platform)
       end
     end
   end
-  end
+end
