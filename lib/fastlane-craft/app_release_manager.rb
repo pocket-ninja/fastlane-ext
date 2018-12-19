@@ -90,6 +90,7 @@ module FastlaneCraft
 
     def curr_git_tag
       return @version.to_s unless @target_suffix
+
       "#{@version}_#{@target_suffix}"
     end
 

@@ -7,6 +7,7 @@ module FastlaneCraft
     def initialize(info_plist, extra_info_plists = [])
       raise 'Invalid Info Plist Path' unless File.file?(info_plist)
       raise 'Invalid Extra Info Plists Paths' unless extra_info_plists.all? { |p| File.file?(p) }
+
       @info_plist = info_plist
       @extra_info_plists = extra_info_plists
     end

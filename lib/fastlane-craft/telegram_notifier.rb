@@ -9,6 +9,7 @@ module FastlaneCraft
     def initialize(bot_api_token:, chat_id:)
       raise 'Invalid Bot Api Token' if bot_api_token.empty?
       raise 'Invalid Chat Id' if chat_id.empty?
+
       @bot_api_token = bot_api_token
       @chat_id = chat_id
     end

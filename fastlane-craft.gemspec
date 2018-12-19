@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.homepage     = 'https://github.com/app-craft/fastlane-craft.git'
   spec.files        = Dir['{lib}/**/*.rb']
 
-  spec.add_dependency 'fastlane', '> 0'
   spec.add_dependency 'aws-sdk-s3', '> 0'
+  spec.add_dependency 'fastlane', '> 0'
   spec.add_development_dependency 'bundler', '> 0'
   spec.add_development_dependency 'gem-release', '> 0'
   spec.add_development_dependency 'rake', '> 0'
