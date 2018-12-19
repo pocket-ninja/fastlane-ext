@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fastlane-craft (1.4.0)
+    fastlane-craft (1.4.1)
       aws-sdk-s3 (> 0)
       fastlane (> 0)
 

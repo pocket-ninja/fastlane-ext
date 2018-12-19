@@ -29,7 +29,7 @@ end
 
 desc 'auto-deploy'
 task :deploy do
-  %w[add_tag bump_version push_gem push_branch].each do |t|
+  %w[push_gem add_tag bump_version push_branch].each do |t|
     Rake::Task[t].execute
   end
 end
