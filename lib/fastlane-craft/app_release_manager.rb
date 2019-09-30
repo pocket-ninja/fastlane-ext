@@ -47,6 +47,8 @@ module FastlaneCraft
     end
 
     def upload_to_tf
+      # see more at https://github.com/fastlane/fastlane/issues/15390
+      ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
       cmd = 'fastlane pilot upload --skip_submission --skip_waiting_for_build_processing'
       raise "TF uploading Failed! Command execution error: '#{cmd}'" unless system(cmd)
     end
