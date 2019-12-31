@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'aws-sdk-s3', '> 0'
   spec.add_dependency 'fastlane', '> 0'
+  spec.add_dependency 'xcodeproj', '> 0'
   spec.add_development_dependency 'bundler', '> 0'
   spec.add_development_dependency 'gem-release', '> 0'
   spec.add_development_dependency 'rake', '> 0'

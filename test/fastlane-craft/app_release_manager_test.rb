@@ -1,6 +1,5 @@
 require_relative '../test_helper'
 require_relative '../../lib/fastlane-craft/app_release_manager'
-require 'tempfile'
 
 class AppReleaseManagerMock < FastlaneCraft::AppReleaseManager
   attr_accessor :tags
@@ -40,8 +39,8 @@ class AppReleaseManagerTest < Test::Unit::TestCase
   end
 
   def test_env_variables
-    with_info_plist_file do |file|
-      manager = AppReleaseManagerMock.new('s', file.path, [], 'master', '1.3.0')
+    with_project do |project|
+      manager = AppReleaseManagerMock.new(project_schemes, project, 'master', '1.3.0')
       manager.bump_version
       manager.update_env
       assert_equal(ENV[SharedValues::APP_RELEASE_VERSION], '1.3.0')
@@ -49,14 +48,14 @@ class AppReleaseManagerTest < Test::Unit::TestCase
       assert_equal(ENV[SharedValues::APP_RELEASE_VERSION_TAG], '1.3.0/1.3.0.0')
     end
   end
-
+ 
   def test_version_bump
-    with_info_plist_file do |file|
-      manager = AppReleaseManagerMock.new('s', file.path, [], 'master', '1.3.0')
-      plist_controller = InfoPlistController.new(file.path)
+    with_project do |project|
+      manager = AppReleaseManagerMock.new(project_schemes, project, 'master', '1.3.0')
       manager.bump_version
-      assert_equal(plist_controller.version.to_s, '1.3.0')
-      assert_equal(plist_controller.build_version.to_s, '1.3.0.0')
+      project_controller = ProjectController.new(project, project_schemes)
+      assert_equal(project_controller.version.to_s, '1.3.0')
+      assert_equal(project_controller.build_version.to_s, '1.3.0.0')
     end
   end
 
@@ -64,9 +63,8 @@ class AppReleaseManagerTest < Test::Unit::TestCase
 
   def release_manager(version = nil, suffix = nil)
     AppReleaseManagerMock.new(
-      'scheme',
-      info_plist_path,
-      [],
+      project_schemes,
+      project_path,
       'master',
       version,
       suffix

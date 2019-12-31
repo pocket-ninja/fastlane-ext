@@ -1,4 +1,4 @@
-require_relative 'info_plist_controller'
+require_relative 'project_controller'
 require 'fastlane_core/ui/ui'
 
 module FastlaneCraft
@@ -12,16 +12,13 @@ module FastlaneCraft
     include FastlaneCore
     include Gem
 
-    def initialize(scheme, info_plist, extra_info_plists, branch, version = nil, target_suffix = nil)
-      raise 'Invalid Branch' if branch.empty?
-      raise 'Invalid Scheme' if scheme.empty?
+    def initialize(schemes, project, branch, version = nil, target_suffix = nil)
       raise 'Invalid Version' if version && !version_valid?(version)
 
-      @scheme = scheme
       @branch = branch
       @target_suffix = target_suffix
-      @plist_controller = InfoPlistController.new(info_plist, extra_info_plists)
-      @version = version.nil? ? @plist_controller.version : Version.new(version)
+      @project_controller = ProjectController.new(project, schemes)
+      @version = version.nil? ? @project_controller.version : Version.new(version)
     end
 
     def release
@@ -29,7 +26,7 @@ module FastlaneCraft
       archive
       upload_to_tf
       update_env
-      @plist_controller.bump_build_version_patch
+      @project_controller.bump_build_version_patch
       push_version_bump
 
       remove_existing_git_tag
@@ -38,11 +35,11 @@ module FastlaneCraft
 
     def bump_version
       msg = 'Given version is less than the actual app version'
-      UI.user_error! msg if @version < @plist_controller.version
-      return unless @version > @plist_controller.version
+      UI.user_error! msg if @version < @project_controller.version
+      return unless @version > @project_controller.version
 
-      @plist_controller.set_version(@version)
-      @plist_controller.set_build_version(Version.new(@version.to_s + '.0'))
+      @project_controller.set_version(@version)
+      @project_controller.set_build_version(Version.new(@version.to_s + '.0'))
       UI.success "Version was successfully bumped to #{version_dump}"
     end
 
@@ -54,8 +51,8 @@ module FastlaneCraft
     end
 
     def update_env
-      ENV[SharedValues::APP_RELEASE_VERSION] = @plist_controller.version.to_s
-      ENV[SharedValues::APP_RELEASE_BUILD_NUMBER] = @plist_controller.build_version.to_s
+      ENV[SharedValues::APP_RELEASE_VERSION] = @project_controller.version.to_s
+      ENV[SharedValues::APP_RELEASE_BUILD_NUMBER] = @project_controller.build_version.to_s
       ENV[SharedValues::APP_RELEASE_VERSION_TAG] = version_dump
     end
 
@@ -112,7 +109,7 @@ module FastlaneCraft
     end
 
     def version_dump
-      "#{@plist_controller.version}/#{@plist_controller.build_version}"
+      "#{@project_controller.version}/#{@project_controller.build_version}"
     end
   end
 end

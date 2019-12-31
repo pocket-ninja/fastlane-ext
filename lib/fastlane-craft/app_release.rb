@@ -5,9 +5,8 @@ module Fastlane
     class AppReleaseAction < Action
       def self.run(params)
         FastlaneCraft::AppReleaseManager.new(
-          params[:scheme],
-          params[:info_plist],
-          params[:extra_info_plists],
+          params[:schemes],
+          params[:project],
           params[:branch],
           params[:version],
           params[:target_suffix]
@@ -29,28 +28,21 @@ module Fastlane
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(
-            key: :scheme,
-            description: 'project scheme',
-            verify_block: proc do |value|
-              UI.user_error!('empty scheme') if value.empty?
-            end
-          ),
-          FastlaneCore::ConfigItem.new(
-            key: :info_plist,
-            description: 'target info plist path',
-            verify_block: proc do |value|
-              msg = 'info plist path not found'
-              UI.user_error!(msg) unless File.file?(value)
-            end
-          ),
-          FastlaneCore::ConfigItem.new(
-            key: :extra_info_plists,
-            description: 'extra info plists paths',
+            key: :schemes,
+            description: 'schemes',
             type: Array,
-            default_value: [],
             verify_block: proc do |value|
-              msg = 'invalid info plists paths'
-              UI.user_error!(msg) unless value.all? { |p| File.file?(p) }
+              msg = 'invalid or empty schemes'
+              UI.user_error!(msg) if value.empty?
+            end
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :project,
+            description: 'path to xcodeproj',
+            default_value: Dir.glob('*.xcodeproj').first,
+            verify_block: proc do |value|
+              msg = 'xcodeproj not found'
+              UI.user_error!(msg) unless File.directory?(value)
             end
           ),
           FastlaneCore::ConfigItem.new(
@@ -77,13 +69,11 @@ module Fastlane
       def self.example_code
         [
           'app_release(
-            scheme: "AppScheme",
-            info_plist: "/path/to/info/plist"
+            schemes: ["AppScheme", "AppExtension"]
           )',
           'app_release(
-            scheme: "Application",
-            info_plist: "/path/to/info/plist",
-            extra_info_plists: ["plist1", "plist2"],
+            schemes: ["AppScheme", "AppExtension"],
+            project: "/path/to/xcodeproj",
             branch: "master",
             version: "2.3.0",
             target_suffix: "_sfx"

@@ -57,11 +57,10 @@ To release your app run:
 lane :release do
   fastlane_require 'fastlane-craft'
   app_release(
-    scheme: 'app scheme',
-    info_plist: 'path/to/plist',
-    extra_info_plists: ['/path/to/plist'], # optional, default is []
+    schemes: ['app scheme'],
+    project: 'path to xcodeproj', # optional, default is './*.xcodeproj'
     branch: 'remote_branch', # optional, default is master
-    version: 'version', # or ENV['VERSION'] 
+    version: 'version', # optional, default is ENV['VERSION']
     target_suffix: '_sfx' # optional
   )
 end
