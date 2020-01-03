@@ -57,7 +57,7 @@ To release your app run:
 lane :release do
   fastlane_require 'fastlane-craft'
   app_release(
-    schemes: ['app scheme'],
+    schemes: ['app scheme'], # the first scheme should be the one to release
     project: 'path to xcodeproj', # optional, default is './*.xcodeproj'
     branch: 'remote_branch', # optional, default is master
     version: 'version', # optional, default is ENV['VERSION']

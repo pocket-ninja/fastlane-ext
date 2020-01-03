@@ -15,6 +15,7 @@ module FastlaneCraft
     def initialize(schemes, project, branch, version = nil, target_suffix = nil)
       raise 'Invalid Version' if version && !version_valid?(version)
 
+      @scheme = schemes.first
       @branch = branch
       @target_suffix = target_suffix
       @project_controller = ProjectController.new(project, schemes)
