@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'app_release_manager'
 
 module Fastlane
   module Actions
     class AppReleaseAction < Action
       def self.run(params)
-        FastlaneCraft::AppReleaseManager.new(
+        FastlaneExt::AppReleaseManager.new(
           params[:schemes],
           params[:project],
           params[:branch],

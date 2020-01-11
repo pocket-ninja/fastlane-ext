@@ -1,7 +1,9 @@
-require_relative '../test_helper'
-require_relative '../../lib/fastlane-craft/app_release_manager'
+# frozen_string_literal: true
 
-class AppReleaseManagerMock < FastlaneCraft::AppReleaseManager
+require_relative '../test_helper'
+require_relative '../../lib/fastlane-ext/app_release_manager'
+
+class AppReleaseManagerMock < FastlaneExt::AppReleaseManager
   attr_accessor :tags
 
   def git_tags
@@ -11,7 +13,7 @@ end
 
 class AppReleaseManagerTest < Test::Unit::TestCase
   include Test::Unit::Assertions
-  include FastlaneCraft
+  include FastlaneExt
   include Gem
 
   def test_version
@@ -48,7 +50,7 @@ class AppReleaseManagerTest < Test::Unit::TestCase
       assert_equal(ENV[SharedValues::APP_RELEASE_VERSION_TAG], '1.3.0/1.3.0.0')
     end
   end
- 
+
   def test_version_bump
     with_project do |project|
       manager = AppReleaseManagerMock.new(project_schemes, project, 'master', '1.3.0')

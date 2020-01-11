@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'telegram_notifier'
 
 module Fastlane
   module Actions
     class TelegramAction < Action
-      include FastlaneCraft
+      include FastlaneExt
 
       def self.run(params)
         notifier = TelegramNotifier.new(bot_api_token: params[:bot_api_token], chat_id: params[:chat_id])

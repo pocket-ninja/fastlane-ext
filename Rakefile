@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rubocop/rake_task'
-require_relative 'lib/fastlane-craft/version'
+require_relative 'lib/fastlane-ext/version'
 
 task default: 'test'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
-  t.test_files = FileList['test/fastlane-craft/*_test.rb']
+  t.test_files = FileList['test/fastlane-ext/*_test.rb']
   t.warning = false
 end
 
@@ -19,7 +21,7 @@ desc 'deploy if there are no stoppers'
 task :deploy_if_needed do
   tags = `git tag`.lines.map(&:strip)
   last_commit_msg = `git log -1 --pretty=%B`
-  version = FastlaneCraft::VERSION
+  version = FastlaneExt::VERSION
   stop_keywords = ['STOP', 'WIP', 'WAIT', version]
   exit(0) if stop_keywords.any? { |k| last_commit_msg.include?(k) }
   exit(0) if tags.include?(version)
@@ -42,7 +44,7 @@ end
 
 desc 'add tag to the latest commit'
 task :add_tag do
-  cmd = "git tag #{FastlaneCraft::VERSION}"
+  cmd = "git tag #{FastlaneExt::VERSION}"
   raise "Tag creation failed! Command execution error: '#{cmd}'" unless system(cmd)
 end
 

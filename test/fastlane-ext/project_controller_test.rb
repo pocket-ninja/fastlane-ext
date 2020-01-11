@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require_relative '../test_helper'
-require_relative '../../lib/fastlane-craft/project_controller'
+require_relative '../../lib/fastlane-ext/project_controller'
 
 class InfoPlistControllerTest < Test::Unit::TestCase
   include Test::Unit::Assertions
-  include FastlaneCraft
+  include FastlaneExt
   include Gem
 
   def test_build_version_bump

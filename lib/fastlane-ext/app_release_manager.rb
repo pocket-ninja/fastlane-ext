@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require_relative 'project_controller'
 require 'fastlane_core/ui/ui'
 
-module FastlaneCraft
+module FastlaneExt
   module SharedValues
-    APP_RELEASE_VERSION = 'APP_RELEASE_VERSION'.freeze
-    APP_RELEASE_BUILD_NUMBER = 'APP_RELEASE_BUILD_NUMBER'.freeze
-    APP_RELEASE_VERSION_TAG = 'APP_RELEASE_VERSION_TAG'.freeze
+    APP_RELEASE_VERSION = 'APP_RELEASE_VERSION'
+    APP_RELEASE_BUILD_NUMBER = 'APP_RELEASE_BUILD_NUMBER'
+    APP_RELEASE_VERSION_TAG = 'APP_RELEASE_VERSION_TAG'
   end
 
   class AppReleaseManager
@@ -46,7 +48,7 @@ module FastlaneCraft
 
     def upload_to_tf
       # see more at https://github.com/fastlane/fastlane/issues/15390
-      ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
+      ENV['DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS'] = '-t DAV'
       cmd = 'fastlane pilot upload --skip_submission --skip_waiting_for_build_processing'
       raise "TF uploading Failed! Command execution error: '#{cmd}'" unless system(cmd)
     end

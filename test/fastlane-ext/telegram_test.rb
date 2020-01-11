@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require_relative '../test_helper'
-require_relative '../../lib/fastlane-craft/telegram_notifier'
+require_relative '../../lib/fastlane-ext/telegram_notifier'
 require 'webmock/test_unit'
 
 class TelegramTests < Test::Unit::TestCase
   include Test::Unit::Assertions
-  include FastlaneCraft
+  include FastlaneExt
   include WebMock::API
   WebMock.enable!
 

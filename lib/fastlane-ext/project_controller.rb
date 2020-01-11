@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'xcodeproj'
 
-module FastlaneCraft
+module FastlaneExt
   class ProjectController
     include Gem
 
     def initialize(path, schemes)
       raise 'Invalid Path' unless File.directory?(path)
-      
+
       @project = Xcodeproj::Project.open(path)
       @schemes = schemes
     end
@@ -18,14 +20,14 @@ module FastlaneCraft
     end
 
     def set_version(version)
-      @schemes.each do |s| 
-        set_scheme_value_for_key(s, version.to_s, version_key) 
+      @schemes.each do |s|
+        set_scheme_value_for_key(s, version.to_s, version_key)
       end
     end
 
     def set_build_version(version)
-      @schemes.each do |s| 
-        set_scheme_value_for_key(s, version.to_s, build_version_key) 
+      @schemes.each do |s|
+        set_scheme_value_for_key(s, version.to_s, build_version_key)
       end
     end
 
@@ -44,12 +46,10 @@ module FastlaneCraft
     def set_scheme_value_for_key(scheme, value, key, configuration = nil)
       target = project_target(scheme)
       target.build_configurations.each do |config|
-        if configuration.nil? || config.name == configuration
-          config.build_settings[key] = value
-        end
+        config.build_settings[key] = value if configuration.nil? || config.name == configuration
       end
-      
-      @project.save()
+
+      @project.save
     end
 
     def scheme_value_for_key(scheme, key, configuration = nil)
@@ -61,19 +61,20 @@ module FastlaneCraft
         end
       end
 
-      return nil
+      nil
     end
 
     def project_target(scheme)
-      target = @project.targets.find { |t| t.name == scheme } 
+      target = @project.targets.find { |t| t.name == scheme }
       raise "Target not found for scheme: #{scheme}" unless target
-      return target
+
+      target
     end
 
     def version_key
       'MARKETING_VERSION'
     end
-    
+
     def build_version_key
       'CURRENT_PROJECT_VERSION'
     end

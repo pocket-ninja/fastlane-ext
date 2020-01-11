@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'net/https'
 require 'uri'
 
-module FastlaneCraft
-  HTML = 'HTML'.freeze
-  MARKDOWN = 'Markdown'.freeze
+module FastlaneExt
+  HTML = 'HTML'
+  MARKDOWN = 'Markdown'
 
   class TelegramNotifier
     def initialize(bot_api_token:, chat_id:)

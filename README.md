@@ -1,4 +1,4 @@
-# fastlane-craft &nbsp; [![Build Status](https://app.bitrise.io/app/0845b4d0a78dc7db/status.svg?token=xTOEh6hV9SMcfVlY2-MjxQ&branch=master)](https://www.bitrise.io/app/0845b4d0a78dc7db)  [![Gem Version](https://badge.fury.io/rb/fastlane-craft.svg)](https://badge.fury.io/rb/fastlane-craft)
+# fastlane-ext &nbsp; [![Build Status](https://app.bitrise.io/app/0845b4d0a78dc7db/status.svg?token=xTOEh6hV9SMcfVlY2-MjxQ&branch=master)](https://www.bitrise.io/app/0845b4d0a78dc7db)  [![Gem Version](https://badge.fury.io/rb/fastlane-ext.svg)](https://badge.fury.io/rb/fastlane-ext)
 
 ## Contents
 - [Installation](#installation)
@@ -11,7 +11,7 @@
 Add this line to your Gemfile:
 
 ```ruby
-gem 'fastlane-craft'
+gem 'fastlane-ext'
 ```
 
 And then execute:
@@ -20,7 +20,7 @@ $ bundle install
 ```
 Or install it manually as:
 ```bash
-$ gem install fastlane-craft
+$ gem install fastlane-ext
 ```
 
 ## Telegram
@@ -30,7 +30,7 @@ Just call `telegram` action in your lane:
 
 ```ruby
 lane :notify_telegram do
-  fastlane_require 'fastlane-craft'
+  fastlane_require 'fastlane-ext'
 
   telegram(
     bot_api_token: 'bot api token', # or setup FL_TELEGRAM_BOT_API_TOKEN env variable
@@ -55,7 +55,7 @@ To release your app run:
 
 ```ruby
 lane :release do
-  fastlane_require 'fastlane-craft'
+  fastlane_require 'fastlane-ext'
   app_release(
     schemes: ['app scheme'], # the first scheme should be the one to release
     project: 'path to xcodeproj', # optional, default is './*.xcodeproj'

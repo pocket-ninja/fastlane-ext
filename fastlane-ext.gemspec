@@ -1,14 +1,16 @@
-require File.expand_path('lib/fastlane-craft/version', __dir__)
+# frozen_string_literal: true
+
+require File.expand_path('lib/fastlane-ext/version', __dir__)
 
 Gem::Specification.new do |spec|
-  spec.name         = 'fastlane-craft'
-  spec.version      = FastlaneCraft::VERSION
-  spec.authors      = %w[sroik elfenlaid]
+  spec.name         = 'fastlane-ext'
+  spec.version      = FastlaneExt::VERSION
+  spec.authors      = %w[sroik]
   spec.email        = 'vasili.kazhanouski@gmail.com'
-  spec.summary      = 'fastlane craft summary'
-  spec.description  = 'fastlane craft'
+  spec.summary      = 'fastlane ext summary'
+  spec.description  = 'fastlane ext'
   spec.license      = 'MIT'
-  spec.homepage     = 'https://github.com/app-craft/fastlane-craft.git'
+  spec.homepage     = 'https://github.com/appsurd/fastlane-ext.git'
   spec.files        = Dir['{lib}/**/*.rb']
 
   spec.add_dependency 'aws-sdk-s3', '> 0'

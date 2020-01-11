@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'fastlane'
 require 'test/unit'
 require 'fileutils'
-require_relative '../lib/fastlane-craft'
+require_relative '../lib/fastlane-ext'
 
 class Test::Unit::TestCase
-  include FastlaneCraft
+  include FastlaneExt
 
   def with_project
     Dir.mktmpdir do |dir|
@@ -17,7 +19,7 @@ class Test::Unit::TestCase
   def project_path
     File.expand_path("resources/#{mock_xcodeproj}", __dir__)
   end
-  
+
   def project_schemes
     ['Match3']
   end
