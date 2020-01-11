@@ -18,10 +18,11 @@ jobs:
         ruby-version: 2.6.x
 
     - name: Action SSH Agent
-      uses: yakuhzi/action-ssh-agent@1.4.2
+      uses: webfactory/ssh-agent@v0.1.1
       with:
         ssh-private-key: $SSH_PRIVATE_KEY
-        ssh-public-key: $SSH_PUBLIC_KEY
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.PUBLISHER_SSH_PRIVATE_KEY}}
 
     - name: Publish to RubyGems
       run: |
@@ -34,5 +35,3 @@ jobs:
         bundle exec rake deploy_if_needed
       env:
         GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
-        SSH_PRIVATE_KEY: ${{secrets.PUBLISHER_SSH_PRIVATE_KEY}}
-        SSH_PUBLIC_KEY: ${{secrets.PUBLISHER_SSH_PUBLIC_KEY}}
