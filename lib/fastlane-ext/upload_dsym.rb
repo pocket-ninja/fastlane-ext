@@ -60,9 +60,9 @@ module Fastlane
         [
           FastlaneCore::ConfigItem.new(key: :kind,
                                        env_name: 'FL_UPLOAD_DSYM_KIND',
-                                       description: "Origin of the dSYM ('Beta', 'Release', etc)",
+                                       description: "Origin of the dSYM ('beta', 'release', etc)",
                                        is_string: true,
-                                       default_value: ENV['BITRISE_TRIGGERED_WORKFLOW_TITLE'],
+                                       default_value: 'release',
                                        verify_block: proc do |value|
                                          UI.user_error!("No kind for UploadDsymAction given, pass using `kind: 'kind'`") unless value && !value.empty?
                                        end),
@@ -70,7 +70,7 @@ module Fastlane
                                        env_name: 'FL_UPLOAD_DSYM_VERSION',
                                        description: "Version of a constructed .ipa. (Build number '321', App version '1.2.3', etc.)",
                                        is_string: true,
-                                       default_value: ENV['APP_RELEASE_BUILD_NUMBER'] || ENV['BITRISE_BUILD_NUMBER'],
+                                       default_value: ENV['APP_RELEASE_BUILD_NUMBER'],
                                        verify_block: proc do |value|
                                          UI.user_error!("No version for UploadDsymAction given, pass using `version: 'version'`") unless value && !value.empty?
                                        end),
