@@ -17,12 +17,10 @@ jobs:
       with:
         ruby-version: 2.6.x
 
-    - name: Action SSH Agent
-      uses: webfactory/ssh-agent@v0.1.1
+    - name: SSH Agent
+    - uses: webfactory/ssh-agent@v0.1.1
       with:
-        ssh-private-key: $SSH_PRIVATE_KEY
-      env:
-        SSH_PRIVATE_KEY: ${{secrets.PUBLISHER_SSH_PRIVATE_KEY}}
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Publish to RubyGems
       run: |
