@@ -1,4 +1,4 @@
-# fastlane-ext &nbsp; [![Build Status](https://github.com/appsurd/fastlane-ext/workflows/publish/badge.svg?branch=master)](https://github.com/appsurd/fastlane-ext/actions)  [![Gem Version](https://badge.fury.io/rb/fastlane-ext.svg)](https://badge.fury.io/rb/fastlane-ext)
+# fastlane-ext &nbsp; [![Build Status](https://github.com/appsurd/fastlane-ext/workflows/publish/badge.svg)](https://github.com/appsurd/fastlane-ext/actions?query=branch:master)  [![Gem Version](https://badge.fury.io/rb/fastlane-ext.svg)](https://badge.fury.io/rb/fastlane-ext)
 
 ## Contents
 - [Installation](#installation)
