@@ -20,7 +20,12 @@ jobs:
     - name: Run SSH Agent
       uses: webfactory/ssh-agent@v0.1.1
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-private-key: ${{secrets.SSH_PRIVATE_KEY}}
+
+    - name: Setup Git
+      run: |
+      git config --global user.email ${{secrets.USER_EMAIL}}
+      git config --global user.name ${{secrets.USER_NAME}}
 
     - name: Publish to RubyGems
       run: |
