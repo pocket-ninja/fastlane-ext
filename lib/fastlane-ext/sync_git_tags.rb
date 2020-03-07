@@ -3,9 +3,7 @@
 module Fastlane
   module Actions
     class SyncGitTags < Action
-      include FastlaneExt
-
-      def self.run(_params)
+      def self.run(params)
         rm_cmd = 'git tag -d $(git tag -l)'
         fetch_cmd = 'git fetch --prune --tags'
         raise "Failed to remove tags! cmd: '#{rm_cmd}'" unless system(rm_cmd)
