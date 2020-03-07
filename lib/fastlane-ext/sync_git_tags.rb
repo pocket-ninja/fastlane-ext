@@ -2,7 +2,7 @@
 
 module Fastlane
   module Actions
-    class SyncGitTags < Action
+    class SyncGitTagsAction < Action
       def self.run(params)
         rm_cmd = 'git tag -d $(git tag -l)'
         fetch_cmd = 'git fetch --prune --tags'
