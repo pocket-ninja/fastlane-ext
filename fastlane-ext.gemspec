@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage     = 'https://github.com/appsurd/fastlane-ext.git'
   spec.files        = Dir['{lib}/**/*.rb']
 
-  spec.add_dependency 'aws-sdk-s3', '> 0'
+  spec.add_dependency 'aws-sdk-s3', '>= 3.90.1'
   spec.add_dependency 'fastlane', '> 0'
   spec.add_dependency 'xcodeproj', '> 0'
   spec.add_development_dependency 'bundler', '> 0'
