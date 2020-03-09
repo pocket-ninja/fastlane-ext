@@ -201,7 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk-core (>= 3.90.1)
+  aws-sdk-core (> 3.90.0)
   aws-sdk-s3 (> 0)
   bundler (> 0)
   fastlane (> 0)

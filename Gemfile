@@ -2,8 +2,9 @@
 
 source 'https://rubygems.org'
 
-gem 'aws-sdk-core', '>= 3.90.1'
+gem 'aws-sdk-core', '> 3.90.0'
 gem 'aws-sdk-s3', '> 0'
+
 gem 'bundler', '> 0'
 gem 'fastlane', '> 0'
 gem 'gem-release', '> 0'
