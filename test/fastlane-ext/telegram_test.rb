@@ -15,13 +15,14 @@ class TelegramTests < Test::Unit::TestCase
     chat_id = 'test_chat_id'
     message = 'test_message'
     parse_mode = MARKDOWN
+    silent = true
 
     stub_request(:post, "https://api.telegram.org/bot#{bot_api_token}/sendMessage")
-      .with(body: { 'chat_id' => chat_id, 'text' => message, 'parse_mode' => parse_mode })
+      .with(body: { 'chat_id' => chat_id, 'text' => message, 'parse_mode' => parse_mode, "disable_notification" => silent })
       .to_return(status: 200)
 
     notifier = TelegramNotifier.new(bot_api_token: bot_api_token, chat_id: chat_id)
-    response = notifier.notify(message: message, parse_mode: parse_mode)
+    response = notifier.notify(message: message, parse_mode: parse_mode, silent: silent)
 
     assert(response.code == '200', 'wrong response code assertion!')
   end
