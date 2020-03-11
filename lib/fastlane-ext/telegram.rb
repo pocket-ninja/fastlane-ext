@@ -9,7 +9,7 @@ module Fastlane
 
       def self.run(params)
         notifier = TelegramNotifier.new(bot_api_token: params[:bot_api_token], chat_id: params[:chat_id])
-        notifier.notify(message: params[:message], parse_mode: params[:parse_mode])
+        notifier.notify(message: params[:message], parse_mode: params[:parse_mode], silent: params[:silent])
       end
 
       #####################################################
@@ -54,6 +54,12 @@ module Fastlane
             key: :parse_mode,
             env_name: 'FL_TELEGRAM_MESSAGE_PARSE_MODE',
             description: 'telegram message parse mode',
+            optional: true
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :silent,
+            env_name: 'FL_TELEGRAM_MESSAGE_SILENT_NOTIFY',
+            description: 'disables telegram message notifications',
             optional: true
           )
         ]
