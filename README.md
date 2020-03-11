@@ -40,7 +40,7 @@ lane :notify_telegram do
     # 'Markdown' or 'HTML'. It's optional. Also U can setup FL_TELEGRAM_MESSAGE_PARSE_MODE env variable
     parse_mode: 'message parse mode', 
     
-    # `true` or `false`. Whether the message notifies chat on arrival. By default notifications are skipped.
+    # `true` or `false`. Whether the message notifies destination chat on arrival. By default notifications are skipped.
     silent: true
   )
 end
