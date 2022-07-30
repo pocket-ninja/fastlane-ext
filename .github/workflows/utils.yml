@@ -1,0 +1,14 @@
+name: publish
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  trace:
+    name: Greetings
+    runs-on: ubuntu-latest
+    steps:
+      - run: | 
+          echo "user email: ${{ secrets.USER_EMAIL }}"
+          echo "user name: ${{ secrets.USER_NAME }}"
+          echo "user token: ${{ secrets.USER_GITHUB_TOKEN }}"
