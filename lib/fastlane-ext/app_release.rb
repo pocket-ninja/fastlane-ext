@@ -50,7 +50,7 @@ module Fastlane
           FastlaneCore::ConfigItem.new(
             key: :branch,
             description: 'branch',
-            default_value: 'master',
+            default_value: 'main',
             verify_block: proc do |value|
               UI.user_error!('invalid branch') if value.empty?
             end
@@ -76,7 +76,7 @@ module Fastlane
           'app_release(
             schemes: ["AppScheme", "AppExtension"],
             project: "/path/to/xcodeproj",
-            branch: "master",
+            branch: "main",
             version: "2.3.0",
             target_suffix: "_sfx"
           )'

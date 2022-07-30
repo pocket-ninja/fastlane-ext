@@ -42,7 +42,7 @@ class AppReleaseManagerTest < Test::Unit::TestCase
 
   def test_env_variables
     with_project do |project|
-      manager = AppReleaseManagerMock.new(project_schemes, project, 'master', '1.3.0')
+      manager = AppReleaseManagerMock.new(project_schemes, project, 'main', '1.3.0')
       manager.bump_version
       manager.update_env
       assert_equal(ENV[SharedValues::APP_RELEASE_VERSION], '1.3.0')
@@ -53,7 +53,7 @@ class AppReleaseManagerTest < Test::Unit::TestCase
 
   def test_version_bump
     with_project do |project|
-      manager = AppReleaseManagerMock.new(project_schemes, project, 'master', '1.3.0')
+      manager = AppReleaseManagerMock.new(project_schemes, project, 'main', '1.3.0')
       manager.bump_version
       project_controller = ProjectController.new(project, project_schemes)
       assert_equal(project_controller.version.to_s, '1.3.0')
@@ -67,7 +67,7 @@ class AppReleaseManagerTest < Test::Unit::TestCase
     AppReleaseManagerMock.new(
       project_schemes,
       project_path,
-      'master',
+      'main',
       version,
       suffix
     )

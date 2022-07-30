@@ -62,7 +62,7 @@ lane :release do
   app_release(
     schemes: ['app scheme'], # the first scheme should be the one to release
     project: 'path to xcodeproj', # optional, default is './*.xcodeproj'
-    branch: 'remote_branch', # optional, default is master
+    branch: 'remote_branch', # optional, default is main
     version: 'version', # optional, default is ENV['VERSION']
     target_suffix: '_sfx' # optional
   )
