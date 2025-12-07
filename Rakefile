@@ -50,7 +50,7 @@ end
 
 desc 'push repo to github'
 task :push_branch do
-  cmd = 'git push origin HEAD:master --tags'
+  cmd = 'git push origin HEAD:main --tags'
   raise "Pushing failed! Command execution error: '#{cmd}'" unless system(cmd)
 end
 
