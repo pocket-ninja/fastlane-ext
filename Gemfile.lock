@@ -271,7 +271,7 @@ DEPENDENCIES
   bundler (> 0)
   fastlane (> 0)
   gem-release (> 0)
-  openssl
+  openssl (> 0)
   rake (> 0)
   rubocop (> 0.52)
   test-unit (> 0)
