@@ -14,7 +14,7 @@ module FastlaneExt
     end
 
     def bump_build_version_patch
-      value = build_version.to_s
+      value = build_version.to_s.dup
       value[-1] = (value[-1].to_i + 1).to_s
       set_build_version(Version.new(value))
     end
