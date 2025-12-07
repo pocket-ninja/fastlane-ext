@@ -19,5 +19,5 @@ jobs:
         ruby-version: '3.2'
         bundler-cache: true
         
-    - name: Build and test with Rake
+    - name: Test with Rake
       run: bundle exec rake test
