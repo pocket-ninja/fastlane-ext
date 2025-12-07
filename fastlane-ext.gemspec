@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.summary      = 'fastlane ext summary'
   spec.description  = 'fastlane ext'
   spec.license      = 'MIT'
-  spec.homepage     = 'https://github.com/appsurd/fastlane-ext.git'
+  spec.homepage     = 'https://github.com/pocket-ninja/fastlane-ext'
   spec.files        = Dir['{lib}/**/*.rb']
 
   spec.add_dependency 'aws-sdk-s3', '> 0'
